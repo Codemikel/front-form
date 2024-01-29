@@ -1,14 +1,12 @@
-<script>
-export default {
-  name: 'App'
-}
-</script>
+<!-- App.vue -->
 <script setup>
-import OrdersIndex from './Pages/Orders/Index.vue';
+import AppLayout from './Layouts/AppLayout.vue';
+import { RouterView } from 'vue-router';
+
 </script>
 
 <template>
   <div class="h-screen bg-slate-100">
-    <OrdersIndex></OrdersIndex>
+    <RouterView/>
   </div>
 </template>

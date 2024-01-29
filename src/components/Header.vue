@@ -3,15 +3,12 @@ export default {
     name: 'Header'
 }
 </script>
-<script setup>
-
-</script>
 
 <template>
-  <div class="h-24 p-4 flex justify-between bg-blue-950">
-        <h1 class="text-white text-lg" >Registros</h1>
+  <div class="py-4 px-8 flex justify-between bg-blue-950">
+        <router-link to="/" class="text-xl text-white font-sans font-semibold ">Predios</router-link>
         <nav>
-            <a>Registrar Orden</a>
+            <router-link to="/form" class="py-3 px-4 rounded-md bg-white text-blue-950 font-sans hover:bg-slate-100">Registrar predio</router-link>
         </nav>
     </div>
 </template>
