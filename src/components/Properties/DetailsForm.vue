@@ -156,5 +156,5 @@ export default {
     </div>
       <button type="submit" class="text-white py-2 bg-blue-900 rounded w-1/4 hover:bg-blue-950">Siguiente</button>
   </form>
-  <IndicatorsForm v-if="showIndicatorsForm" />
+  <IndicatorsForm v-if="showIndicatorsForm" :propertyId="formData.property_id"/>
 </template>
