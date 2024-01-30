@@ -49,10 +49,10 @@ export default {
 </script>
 
 <template>
-    <div class="p-8 m-8 bg-white rounded-md shadow-md">
+    <div class="my-px mx-8 pt-8 px-3 sm:p-8 m-8 bg-white rounded-md shadow-md">
       <h2 class="text-center text-xl font-semibold">Formulario</h2>
     
-      <form v-if="!showDetailsForm" @submit.prevent="submitForm" class="grid grid-cols-2 grid-rows-4 p-4">
+      <form v-if="!showDetailsForm" @submit.prevent="submitForm" class="flex flex-col py-4 sm:grid grid-cols-2 grid-rows-4 p-4">
         
         <div class="p-2">
           <label class="text-lg text-gray-700" for="municipio">Municipio</label>
