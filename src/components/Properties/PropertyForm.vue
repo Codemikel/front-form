@@ -37,7 +37,6 @@ export default {
         console.log(data);
         this.formData.id = data.id;
 
-        // Asignar el propertyId y mostrar el DetailsForm
         this.propertyId = this.formData.id;
         this.showDetailsForm = true;
       } catch (error) {
@@ -94,7 +93,7 @@ export default {
           <input v-model="formData.coordinates" id="coordenadas" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
         </div>
   
-        <button type="submit" class="text-white py-2 bg-blue-900 rounded w-1/4 hover:bg-blue-950">
+        <button type="submit" class="text-white py-2 bg-blue-900 rounded lg:justify-self-end lg:col-start-2 lg:w-1/2 sm:w-full sm:grid sm:col-span-full w-1/4 hover:bg-blue-950">
           Enviar
         </button>
       </form>

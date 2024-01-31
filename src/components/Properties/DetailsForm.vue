@@ -1,5 +1,5 @@
 <script>
-import IndicatorsForm from './IndicatorsForm.vue';  // Asegúrate de ajustar la ruta correcta
+import IndicatorsForm from './IndicatorsForm.vue';
 
 export default {
   name: 'DetailsForm',
@@ -45,7 +45,6 @@ export default {
 
         const data = await response.json();
 
-        // Ahora que el formulario se ha enviado con éxito, mostrar IndicatorsForm
         this.showIndicatorsForm = true;
       } catch (error) {
         console.error('Error al enviar el formulario', error.message);
@@ -53,7 +52,6 @@ export default {
     }
   },
   watch: {
-    // Observar cambios en la propiedad propertyId y actualizar formData
     propertyId(newPropertyId) {
       this.formData.property_id = newPropertyId;
     },
@@ -65,7 +63,7 @@ export default {
 <template>
   <form v-if="!showIndicatorsForm" @submit.prevent="submitForm">
     <h2 class="my-4 text-center text-xl font-semibold">Detalles del predio</h2>
-    <div class="grid grid-cols-3 p-4">
+    <div class=" sm:grid grid-cols-3 p-4">
       <div class="p-2">
         <label class="text-lg text-gray-700" for="">Clase textural</label>
         <div>
@@ -132,7 +130,7 @@ export default {
         </div>
       </div>
     </div>
-      <div class="grid grid-cols-2 p-4">
+      <div class="sm:grid grid-cols-2 p-4">
         <div class="p-2">
           <label class="text-lg text-gray-700" for="munsell_table_color">Color tabla Munsell</label>
           <input  v-model="formData.munsell_table_color" id="munsell_table_color" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">

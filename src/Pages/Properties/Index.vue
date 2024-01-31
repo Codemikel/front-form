@@ -21,7 +21,6 @@ export default {
         const responseData = await response.json();
 
         if (Array.isArray(responseData.data)) {
-          // Filtrar solo el nombre de las propiedades
           this.properties = responseData.data.map(property => ({
             id: property.id,
             name: property.name,
