@@ -3,6 +3,7 @@ import App from './App.vue'
 import './style.css'
 import PropertyIndex from './Pages/Properties/Index.vue'
 import MainForm from './Pages/Properties/MainForm.vue'
+import { plugin, defaultConfig } from '@formkit/vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -17,4 +18,4 @@ const router = createRouter({
   routes
 })
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(plugin, defaultConfig).mount('#app')

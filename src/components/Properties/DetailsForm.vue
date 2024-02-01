@@ -1,11 +1,13 @@
 <script>
+import { FormKit } from '@formkit/vue';
 import IndicatorsForm from './IndicatorsForm.vue';
 
 export default {
   name: 'DetailsForm',
   components: {
     IndicatorsForm,
-  },
+    FormKit
+},
   props: {
     propertyId: {
       type: Number,
@@ -29,7 +31,7 @@ export default {
     };
   },
   methods: {
-    async submitForm() {
+    async submitForm(data) {
     try {
         const response = await fetch('http://localhost:8000/api/propertiesTextureDetails/', {
             method: 'POST',
@@ -61,98 +63,109 @@ export default {
 
 
 <template>
-  <form v-if="!showIndicatorsForm" @submit.prevent="submitForm">
-    <h2 class="my-4 text-center text-xl font-semibold">Detalles del predio</h2>
+  <h2 class="my-4 text-center text-xl font-semibold">Detalles del predio</h2>
+  <FormKit v-if="!showIndicatorsForm" type="form" @submit="submitForm" submit-label="Guardar detalles" submit-class="p-4 text-blue-200 bg-blue-900">
     <div class=" sm:grid grid-cols-3 p-4">
-      <div class="p-2">
-        <label class="text-lg text-gray-700" for="">Clase textural</label>
-        <div>
-          <input v-model="formData.class" type="radio" name="class" id="arenoso" value="arenoso" >
-          <label for="arenoso">Arenoso</label>
-        </div>
-        <div>
-            <input v-model="formData.class" type="radio" name="class" id="limoso" value="limoso" >
-            <label for="limoso">Limoso</label>
-        </div>
-        <div>
-            <input v-model="formData.class" type="radio" name="class" id="franco" value="franco" >
-            <label for="franco">Franco</label>
-        </div>
-        <div>
-            <input v-model="formData.class" type="radio" name="class" id="arcilloso" value="arcilloso" >
-            <label for="arcilloso">Arcilloso</label>
-        </div>
-        <div>
-            <input v-model="formData.class" type="radio" name="class" id="otro" value="otro" >
-            <label for="otro">Otro</label>
-        </div>
-      </div>
-      <div class="p-2">
-        <label class="text-lg text-gray-700" for="">Clase textural</label>
-        <div>
-          <input v-model="formData.type" type="radio" name="type" id="prismaticas" value="prismaticas">
-          <label for="prismaticas">Prismáticas</label>
-        </div>
-        <div>
-          <input v-model="formData.type" type="radio" name="type" id="bloque" value="bloque">
-          <label for="bloque">Bloque</label>
-        </div>
-        <div>
-          <input v-model="formData.type" type="radio" name="type" id="granulares" value="granulares">
-          <label for="granulares">Granulares</label>
-        </div>
-        <div>
-          <input v-model="formData.type" type="radio" name="type" id="laminar" value="laminar">
-          <label for="laminar">Laminar</label>
-        </div>
-        <div>
-          <input v-model="formData.type" type="radio" name="type" id="columnar" value="columnar">
-          <label for="columnar">Columnar</label>
-        </div>
-      </div>
-      <div class="p-2">
-        <label class="text-lg text-gray-700" for="">Consistencia</label>
-        <div>
-          <input v-model="formData.consistence" type="radio" name="consistence" id="Suelto" value="Suelto">
-          <label for="Suelto">Suelto</label>
-        </div>
-        <div>
-          <input v-model="formData.consistence" type="radio" name="consistence" id="Firme" value="Firme">
-          <label for="Firme">Firme</label>
-        </div>
-        <div>
-          <input v-model="formData.consistence" type="radio" name="consistence" id="Friable" value="Friable">
-          <label for="Friable">Friable</label>
-        </div>
-        <div>
-          <input v-model="formData.consistence" type="radio" name="consistence" id="Extremadamente Firme" value="Extremadamente Firme">
-          <label for="Extremadamente Firme">Extremadamente Firme</label>
-        </div>
-      </div>
+      <FormKit 
+          label-class="text-gray-900"
+          help-class="text-sm text-gray-400"
+          label="Clase textural"
+          type="radio"
+          :options="[
+            'Arenoso',
+            'Limoso',
+            'Franco',
+            'Arcilloso',
+            'Otro'
+          ]"
+          validation="required"
+          v-model="formData.class"
+      />
+
+      <FormKit 
+          label-class="text-gray-900"
+          help-class="text-sm text-gray-400"
+          label="Tipo de estructura"
+          type="radio"
+          :options="[
+            'Prismáticas',
+            'Granulares',
+            'Laminar',
+            'Columnar',
+            'Bloque'
+          ]"
+          validation="required"
+          v-model="formData.type"
+      />
+
+      <FormKit 
+          label-class="text-gray-900"
+          help-class="text-sm text-gray-400"
+          label="Tipo de estructura"
+          type="radio"
+          :options="[
+            'Suelto',
+            'Firme',
+            'Fríable',
+            'Extremadamente firme'
+          ]"
+          validation="required"
+          v-model="formData.consistence"
+      />
     </div>
-      <div class="sm:grid grid-cols-2 p-4">
-        <div class="p-2">
-          <label class="text-lg text-gray-700" for="munsell_table_color">Color tabla Munsell</label>
-          <input  v-model="formData.munsell_table_color" id="munsell_table_color" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
-        </div>
-        <div class="p-2">
-          <label class="text-lg text-gray-700" for="no_munsell_table_color">Color sin tabla Munsell</label>
-          <input  v-model="formData.no_munsell_table_color" id="no_munsell_table_color" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
-        </div>
-        <div class="p-2">
-          <label class="text-lg text-gray-700" for="worm_quantity">Cantidad de lombrices</label>
-          <input  v-model="formData.worm_quantity" id="worm_quantity" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
-        </div>
-        <div class="p-2">
-          <label class="text-lg text-gray-700" for="organisms">¿Cuáles son los organismos que evidencia?</label>
-          <input  v-model="formData.organisms" id="organisms" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
-        </div>
-        <div class="p-2">
-          <label class="text-lg text-gray-700" for="organisms_quantity">Cantidad de organismos</label>
-          <input  v-model="formData.organisms_quantity" id="organisms_quantity" class="my-3 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text">
-        </div>
+    <div class="sm:grid grid-cols-2 p-4 gap-8">
+        <FormKit 
+          label-class="text-gray-900 font-semibold"
+          input-class="my-4 p-2 border border-gray-300 rounded h-10 w-full mb-2"
+          help-class="text-sm text-gray-400"
+          label="Color tabla Munsell"
+          type="text"
+          validation="required"
+          v-model="formData.munsell_table_color"
+        />
+
+        <FormKit 
+          label-class="text-gray-900 font-semibold"
+          input-class="my-4 p-2 border border-gray-300 rounded h-10 w-full mb-2"
+          help-class="text-sm text-gray-400"
+          label="Color sin tabla Munsell"
+          type="text"
+          validation="required"
+          v-model="formData.no_munsell_table_color"
+        />
+
+        <FormKit 
+          label-class="text-gray-900 font-semibold"
+          input-class="my-4 p-2 border border-gray-300 rounded h-full w-full mb-2"
+          help-class="text-sm text-gray-400"
+          label="Cantidad de lombrices"
+          type="text"
+          validation="required"
+          v-model="formData.worm_quantity"
+        />
+
+        <FormKit 
+          outer-class="row-start-2 row-end-4 col-start-2 col-end-3 h-full w-full"
+          label-class="text-gray-900 font-semibold"
+          input-class="my-4 p-2 border border-gray-300 rounded h-32 w-full mb-2"
+          help-class="text-sm text-gray-400"
+          label="¿Cuáles son los organismos que evidencia?"
+          type="text"
+          validation="required"
+          v-model="formData.organisms"
+        />
+
+        <FormKit 
+          label-class="text-gray-900 font-semibold"
+          input-class="my-4 p-2 border border-gray-300 rounded h-10 w-full mb-2"
+          help-class="text-sm text-gray-400"
+          label="Cantidad de organismos"
+          type="text"
+          validation="required"
+          v-model="formData.organisms_quantity"
+        />
+
     </div>
-      <button type="submit" class="text-white py-2 bg-blue-900 rounded w-1/4 hover:bg-blue-950">Siguiente</button>
-  </form>
+  </FormKit>
   <IndicatorsForm v-if="showIndicatorsForm" :propertyId="formData.property_id"/>
 </template>

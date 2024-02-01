@@ -34,6 +34,22 @@ export default {
         console.error('Error fetching data:', error);
       }
     },
+    async deleteProperty(propertyId) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/properties/${propertyId}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          this.properties = this.properties.filter(property => property.id !== propertyId);
+        } else {
+          console.error('Error deleting property:', response)
+        }
+
+      } catch (error) {
+        console.error('Error deleting property', error)
+      }
+    }
   },
 };
 </script>
@@ -57,7 +73,9 @@ export default {
             <p class="flex justify-between items-center">
               <a href="" class="mx-2 text-blue-300">Ver detalle</a>
               <i class="fa-regular fa-pen-to-square fa-lg"><a class="mx-2 font-mono text-gray-500 text-sm" href="">Editar</a></i>
-              <i class="fa-solid fa-trash fa-lg" style="color: red;"><a class="mx-2 font-light font-mono text-gray-500 text-sm" href="">Eliminar</a></i>
+              <a @click="deleteProperty(property.id)" class="mx-2 font-light font-mono text-gray-500 text-sm">
+                <i class="fa-solid fa-trash fa-lg" style="color: red;"></i> Eliminar
+              </a>
             </p>
           </div>
           <hr/>
