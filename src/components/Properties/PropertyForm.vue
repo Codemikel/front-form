@@ -95,6 +95,9 @@ export default {
           ]"
           label-class="text-gray-900 font-semibold"
           input-class="my-4 p-2 bg-white border border-gray-300 rounded h-10 w-full mb-2"
+          :validation-messages="{
+            required: 'Departamento requerido'
+          }"
         />
 
         <FormKit
@@ -106,6 +109,9 @@ export default {
           help="Nombre del municipio"
           validation="required"
           v-model="formData.municipality"
+          :validation-messages="{
+            required: 'Nombre del municipio requerido'
+          }"
         />
         
         <FormKit 
@@ -118,6 +124,9 @@ export default {
           help="Nombre de vereda"
           validation="required"
           v-model="formData.sidewalk"
+          :validation-messages="{
+            required: 'Vereda requerida'
+          }"
         />
 
         <FormKit 
@@ -130,6 +139,9 @@ export default {
           help="Nombre de predio."
           validation="required"
           v-model="formData.name"
+          :validation-messages="{
+            required: 'Nombre del predio es requerido'
+          }"
         />
 
         <FormKit 
@@ -141,6 +153,9 @@ export default {
           help="Ej: Tomate, Papa."
           validation="required"
           v-model="formData.analyzed_crop"
+          :validation-messages="{
+            required: 'Cultivo analizado requerido'
+          }"
         />
 
         <FormKit 
@@ -152,6 +167,9 @@ export default {
           help="Ej: Frío, Cálido."
           validation="required"
           v-model="formData.weather"
+          :validation-messages="{
+            required: 'Clima es requerido'
+          }"
         />
 
         <FormKit 
@@ -162,7 +180,11 @@ export default {
           type="text"
           help="Nombre de cajuela"
           validation="required"
+          validation-class="text-red-700"
           v-model="formData.trunk_name"
+          :validation-messages="{
+            required: 'Nombre de la cajuela requerida'
+          }"
         />
 
         <FormKit 
@@ -174,6 +196,10 @@ export default {
           help="Área en metros"
           validation="required|number"
           v-model="formData.area"
+          :validation-messages="{
+            required: 'Área requerida',
+            number: 'El campo debe ser de tipo númerico (se permite decimales con .)'
+          }"
         />
 
         <FormKit 
@@ -185,6 +211,9 @@ export default {
           help="Coordenadas del predio"
           validation="required"
           v-model="formData.coordinates"
+          :validation-messages="{
+            required: 'Coordenadas requeridas'
+          }"
         />
 
       </FormKit>

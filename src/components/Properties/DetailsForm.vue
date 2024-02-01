@@ -63,8 +63,8 @@ export default {
 
 
 <template>
-  <h2 class="my-4 text-center text-xl font-semibold">Detalles del predio</h2>
   <FormKit v-if="!showIndicatorsForm" type="form" @submit="submitForm" submit-label="Guardar detalles" submit-class="p-4 text-blue-200 bg-blue-900">
+    <h2 class="my-4 text-center text-xl font-semibold">Detalles del predio</h2>
     <div class=" sm:grid grid-cols-3 p-4">
       <FormKit 
           label-class="text-gray-900"
@@ -80,6 +80,7 @@ export default {
           ]"
           validation="required"
           v-model="formData.class"
+
       />
 
       <FormKit 
@@ -122,6 +123,9 @@ export default {
           type="text"
           validation="required"
           v-model="formData.munsell_table_color"
+          :validation-messages="{
+            required: 'Color de tabla munsell requerido'
+          }"
         />
 
         <FormKit 
@@ -132,6 +136,9 @@ export default {
           type="text"
           validation="required"
           v-model="formData.no_munsell_table_color"
+          :validation-messages="{
+            required: 'Color sin tabla munsell requerido'
+          }"
         />
 
         <FormKit 
@@ -140,8 +147,12 @@ export default {
           help-class="text-sm text-gray-400"
           label="Cantidad de lombrices"
           type="text"
-          validation="required"
+          validation="required|number"
           v-model="formData.worm_quantity"
+          :validation-messages="{
+            required: 'Cantidad de lombrices requerida',
+            number: 'El dato debe ser de tipo numérico'
+          }"
         />
 
         <FormKit 
@@ -153,6 +164,9 @@ export default {
           type="text"
           validation="required"
           v-model="formData.organisms"
+          :validation-messages="{
+            required: 'Organismos que se ven son requeridos'
+          }"
         />
 
         <FormKit 
@@ -161,8 +175,12 @@ export default {
           help-class="text-sm text-gray-400"
           label="Cantidad de organismos"
           type="text"
-          validation="required"
+          validation="required|number"
           v-model="formData.organisms_quantity"
+          :validation-messages="{
+            required: 'Cantidad de gusanos requerida',
+            number: 'El dato debe ser de tipo numérico'
+          }"
         />
 
     </div>

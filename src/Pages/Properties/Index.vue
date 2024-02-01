@@ -72,14 +72,17 @@ export default {
           <div class="grid grid-cols-4 p-4">
             <p class="text-gray-500">{{ property.name }}</p>
             <p class="text-gray-500">{{ property.municipality }}</p>
-            <p class="text-gray-500">{{ property.sidewalk }}</p>
+            <p class="text-gray-500 w-1/2">{{ property.sidewalk }}</p>
             <p class="flex justify-between items-center">
-              <a href="" class="mx-2 text-blue-300">Ver detalle</a>
+              <router-link :to="{ name: 'property.show', params: { id: property.id } }" class="mx-2 text-blue-300">Ver detalle</router-link>
               <i class="fa-regular fa-pen-to-square fa-lg">
                 <a @click="editProperty(property.id)" class="mx-2 font-mono text-gray-500 text-sm">Editar</a>
               </i>
               <a @click="deleteProperty(property.id)" class="mx-2 font-light font-mono text-gray-500 text-sm">
                 <i class="fa-solid fa-trash fa-lg" style="color: red;"></i> Eliminar
+              </a>
+              <a href="">
+                <i class="fa-regular fa-circle-question"></i>
               </a>
             </p>
           </div>
