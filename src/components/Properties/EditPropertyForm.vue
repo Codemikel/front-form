@@ -32,23 +32,15 @@ export default {
     submitForm() {
       axios.put(`http://localhost:8000/api/properties/${this.propertyId}`, this.formData)
         .then((response) => {
-          // Manejar el éxito
-          console.log(response.data.message); // Muestra el mensaje de éxito
-          // Podrías redirigir a otra página o mostrar un mensaje de confirmación
+          console.log(response.data.message); 
         })
         .catch((error) => {
-          // Manejar el error
           console.error(error);
-          // Podrías mostrar un mensaje de error al usuario
         });
     },
   },
 };
 </script>
-
-
-<!-- El resto del componente permanece sin cambios -->
-
 
 <template>
     <div class="my-px mx-8 pt-8 px-3 sm:p-8 m-8 bg-white rounded-md shadow-md">
