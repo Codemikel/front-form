@@ -10,13 +10,11 @@ export default {
     },
     data() {
         return {
-            selectedProperty: null, // Asegúrate de ajustar esto según la estructura de tu aplicación
+            selectedProperty: null, 
         };
     },
     methods: {
         async fetchData() {
-            // Lógica para obtener los datos de la propiedad seleccionada
-            // Puedes llamar a una API o realizar cualquier lógica necesaria
             try {
                 const response = await fetch(`http://localhost:8000/api/properties/${this.propertyId}/`);
                 const data = await response.json();
