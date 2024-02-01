@@ -1,4 +1,5 @@
 <script>
+import { ModalsContainer } from 'vue-final-modal'
   export default {
     name: 'IndicatorsForm',
     props: {
@@ -38,7 +39,8 @@
           organisms_quantity_evs: 0,
           root_growth_evs: 0,
           electric_conductivity_evs: 0
-        }
+        },
+        showSuccessModal: false,
       };
     },
     methods: {
@@ -54,11 +56,14 @@
           const data = await response.json();
           console.log(data);
           this.formData.propertyId = data.propertyId;
-  
-          this.propertyId = this.formData.propertyId;
+
+          this.showSuccessModal = true;
         } catch (error) {
           console.error('Error al enviar el formulario', error);
         }
+      },
+      redirectToIndex() {
+        this.$router.push('/')
       },
       updateEVS(fieldName) {
         // Manejar el valor seleccionado según el campo
@@ -295,5 +300,7 @@
         </div>
 
       </FormKit>
+
+      <ModalsContainer />
     </div>
 </template>

@@ -34,6 +34,9 @@ export default {
         console.error('Error fetching data:', error);
       }
     },
+    editProperty(propertyId) {
+      this.$router.push({ name: 'property.edit', params: { id: propertyId } });
+    },
     async deleteProperty(propertyId) {
       try {
         const response = await fetch(`http://localhost:8000/api/properties/${propertyId}`, {
@@ -72,7 +75,9 @@ export default {
             <p class="text-gray-500">{{ property.sidewalk }}</p>
             <p class="flex justify-between items-center">
               <a href="" class="mx-2 text-blue-300">Ver detalle</a>
-              <i class="fa-regular fa-pen-to-square fa-lg"><a class="mx-2 font-mono text-gray-500 text-sm" href="">Editar</a></i>
+              <i class="fa-regular fa-pen-to-square fa-lg">
+                <a @click="editProperty(property.id)" class="mx-2 font-mono text-gray-500 text-sm">Editar</a>
+              </i>
               <a @click="deleteProperty(property.id)" class="mx-2 font-light font-mono text-gray-500 text-sm">
                 <i class="fa-solid fa-trash fa-lg" style="color: red;"></i> Eliminar
               </a>

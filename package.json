@@ -14,7 +14,9 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "axios": "^1.6.7",
     "vue": "^3.3.11",
-    "vue-router": "^4.2.5"
+    "vue-final-modal": "^4.5.3",
+    "vue-router": "^4.2.5",
+    "vue-simple-modal": "^1.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
